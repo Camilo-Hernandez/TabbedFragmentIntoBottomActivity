@@ -8,23 +8,28 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+<!--    Por si lo necesito  -->
+<!--    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/bottom_nav_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:menu="@menu/toolbar"
+        app:titleTextColor="@android:color/white" />-->
 
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/navigation" />
+    <!-- Do not add: app:navGraph="@navigation/graph"
+    or: android:name="androidx.navigation.fragment.NavHostFragment" -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:background="?android:attr/windowBackground"
             app:menu="@menu/navigation" />
 
-    </RelativeLayout>
 </LinearLayout>
