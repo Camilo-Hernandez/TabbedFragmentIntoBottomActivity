@@ -20,7 +20,7 @@ class ViewPagerFragment : Fragment() {
 		// Inflate the layout for this fragment
 		viewPagerBinding = FragmentViewPagerBinding.inflate(inflater , container , false)
 		// Call the view pager component from the layout and assign a childFragmentManager to its adapter property
-		viewPagerBinding.innerViewPager.adapter = ViewPagerAdapter(childFragmentManager)
+		viewPagerBinding.viewPager.adapter = ViewPagerAdapter(childFragmentManager)
 		return viewPagerBinding.root
 	}
 	
@@ -28,6 +28,14 @@ class ViewPagerFragment : Fragment() {
 		fun newInstance(): ViewPagerFragment {
 			return ViewPagerFragment()
 		}
+	}
+	
+	// Needed to avoid memory leaks
+	// see: https://stackoverflow.com/a/62861424
+	// and: https://stackoverflow.com/a/62184494
+	override fun onDestroy() {
+		viewPagerBinding.viewPager.adapter = null
+		super.onDestroy()
 	}
 	
 	class ViewPagerAdapter(fm: FragmentManager?) :
